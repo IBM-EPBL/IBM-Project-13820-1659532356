@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: 'Times New Roman';
+            text-align: center;
+            margin-top: 100px;
+            font-size: 20px;
+        }
+        form {
+            background: white;
+            background-color: white;
+            width: 35%;
+            height: 400px;
+            margin-top: 10px;
+            border-radius: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            padding-top: 0px;
+            align-items: center;
+            justify-content: center;
+            border-color: #0d4ba0;
+            font-size: 30px;
+        }
+        label {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 15px;
+        }
+        input {
+            margin-left: 20px;
+            width: 200px;
+            background-color: lightcyan;
+        }
+        h2, p {
+            font-size: 30px;
+            font-family: sans-serif;
+            color: navy;
+        }
+        button {
+            width: 80px;
+            background-color: lightcyan;
+        }
+        footer {
+            margin-top: 70px;
+            text-align: center;
+            color: navy;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Predictor</title>
+</head>
+<body>
+    <p>Fill the form to continue</p>
+    <form action="submit.html" method="post">
+        <label>Applicant Name</label>
+        <input name="appname" type="text" required=""><br>
+        <label>Gender (Male/Female)</label>
+        <input name="gender" type="text" required=""><br>
+        <label>Married (Yes/No)</label>
+        <input name="married" type="text" required=""><br>
+        <label>Dependents (Number)</label>
+        <input name="depend" type="number" required=""><br>
+        <label>Education (Graduate/Not Graduate)</label>
+        <input name="education" type="text" required=""><br>
+        <label>Self-Employed (Yes/No)</label>
+        <input name="self_emp" type="text" required=""><br>
+        <label>Applicant Income (in Rupees)</label>
+        <input name="applicant_income" type="number" required=""><br>
+        <label>Co-Applicant Income (in Rupees)</label>
+        <input name="co_income" type="number" required=""><br>
+        <label>Loan Amount (in Rupees)</label>
+        <input name="loan_amount" type="number" required=""><br>
+        <label>Loan Amount Term (in Months)</label>
+        <input name="loan_term" type="number" required=""><br>
+        <label>Credit History (Yes/No)</label>
+        <input name="credit_history" type="text" required=""><br>
+        <label>Property Area (Urban/Semi-Urban/Rural)</label>
+        <input name="property_area" type="text" required="">
+        <a href="submit.html">
+            <input type="submit" value="Predict" style="width:100px; margin-top: 20px;">
+        </a>
+    </form>
+</body>
+<footer>
+    Smart Lender Application
+    Designed by Anirudh T E, Pranav Raj SB, Tushar Shah, Yashwanth M
+</footer>
+</html>
