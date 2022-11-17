@@ -1,93 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <style>
-        body {
-            background-color: lightblue;
-            font-family: 'Times New Roman';
-            text-align: center;
-            margin-top: 100px;
-            font-size: 20px;
-        }
-        form {
-            background: white;
-            background-color: white;
-            width: 35%;
-            height: 400px;
-            margin-top: 10px;
-            border-radius: 20px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 20px;
-            padding-top: 0px;
-            align-items: center;
-            justify-content: center;
-            border-color: #0d4ba0;
-            font-size: 30px;
-        }
-        label {
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            font-size: 15px;
-        }
-        input {
-            margin-left: 20px;
-            width: 200px;
-            background-color: lightcyan;
-        }
-        h2, p {
-            font-size: 30px;
-            font-family: sans-serif;
-            color: navy;
-        }
-        button {
-            width: 80px;
-            background-color: lightcyan;
-        }
-        footer {
-            margin-top: 70px;
-            text-align: center;
-            color: navy;
-        }
-    </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Predictor</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            margin-top: 20px;
+        }
+
+        body {
+            background-color: #055C9D;
+        }
+
+        #loanappform {
+            background-color: #f5f5f5;
+            margin: 100px auto;
+            padding: 40px;
+            width: 50%;
+            height: 460px;
+            min-width: 300px;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            font-size: 14px;
+            font-family: Raleway;
+            border: 1px solid #aaaaaa;
+            margin-top: 10px;
+            height: 30px;
+        }
+
+        input[type="radio"] {
+            margin-top: -1px;
+            vertical-align: middle;
+        }
+
+        input[type="text"] {
+            width: 200px;
+        }
+
+        input[type="number"] {
+            width: 200px;
+        }
+
+        button {
+            margin-top: 30px;
+            margin-bottom: -10px;
+        }
+
+        input.invalid {
+            background-color: #ffdddd;
+        }
+
+        .ip {
+            margin-top: 10px;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        #m,
+        #f,
+        #d0,
+        #d1,
+        #d2,
+        #d3,
+        #d4 {
+            margin-right: 10px;
+        }
+
+        .step {
+            height: 15px;
+            width: 15px;
+            margin-left: 2px;
+            margin-bottom: 0px;
+            background-color: #bbbbbb;
+            border: none;
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.5;
+            position: relative;
+        }
+
+        .step.active {
+            opacity: 1;
+        }
+
+        .step.finish {
+            background-color: #04AA6D;
+        }
+    </style>
 </head>
+
 <body>
-    <p>Fill the form to continue</p>
-    <form action="submit.html" method="post">
-        <label>Applicant Name</label>
-        <input name="appname" type="text" required=""><br>
-        <label>Gender (Male/Female)</label>
-        <input name="gender" type="text" required=""><br>
-        <label>Married (Yes/No)</label>
-        <input name="married" type="text" required=""><br>
-        <label>Dependents (Number)</label>
-        <input name="depend" type="number" required=""><br>
-        <label>Education (Graduate/Not Graduate)</label>
-        <input name="education" type="text" required=""><br>
-        <label>Self-Employed (Yes/No)</label>
-        <input name="self_emp" type="text" required=""><br>
-        <label>Applicant Income (in Rupees)</label>
-        <input name="applicant_income" type="number" required=""><br>
-        <label>Co-Applicant Income (in Rupees)</label>
-        <input name="co_income" type="number" required=""><br>
-        <label>Loan Amount (in Rupees)</label>
-        <input name="loan_amount" type="number" required=""><br>
-        <label>Loan Amount Term (in Months)</label>
-        <input name="loan_term" type="number" required=""><br>
-        <label>Credit History (Yes/No)</label>
-        <input name="credit_history" type="text" required=""><br>
-        <label>Property Area (Urban/Semi-Urban/Rural)</label>
-        <input name="property_area" type="text" required="">
-        <a href="submit.html">
-            <input type="submit" value="Predict" style="width:100px; margin-top: 20px;">
-        </a>
+    <img src="static/ssnlogo.png" height="60px" width="150px">
+    <form id="loanappform" action="submit.html" method="post">
+        <h1>Loan Application Form</h1>
+        <div class="tab">
+            <h3>Personal Information</h3>
+            <label>Applicant Name:</label><br>
+            <input class="input2" name="appname" type="text" required="" oninput="this.className = ''">
+            <br><br><label>Gender:</label><br>
+            <div class="ip">
+                <input name="gender" type="radio" value="Male" id="m" oninput="this.className = ''"><label
+                    for="m">Male</label>
+                <input name="gender" type="radio" value="Female" id="f" oninput="this.className = ''"><label
+                    for="m">Female</label>
+            </div>
+        </div>
+
+        <div class="tab">
+            <h3>Marital Information</h3>
+            <label>Married:</label><br>
+            <div class="ip">
+                <input name="married" type="radio" value="Yes" id="y1" oninput="this.className = ''"><label
+                    for="ym1">Yes</label>
+                <input name="married" type="radio" value="No" id="n1" oninput="this.className = ''"><label
+                    for="nm1">No</label>
+            </div>
+            <br><label>Number of Dependents:</label><br>
+            <div class="ip">
+                <input name="depend" type="radio" value="0" id="d0" oninput="this.className = ''"><label
+                    for="d0">0</label>
+                <input name="depend" type="radio" value="1" id="d1" oninput="this.className = ''"><label
+                    for="d1">1</label>
+                <input name="depend" type="radio" value="2" id="d2" oninput="this.className = ''"><label
+                    for="d2">2</label>
+                <input name="depend" type="radio" value="3" id="d3" oninput="this.className = ''"><label
+                    for="d3">3</label>
+                <input name="depend" type="radio" value="3+" id="d4" oninput="this.className = ''"><label
+                    for="d4">3+</label>
+            </div>
+        </div>
+
+        <div class="tab">
+            <h3>Education & Job Type</h3>
+            <label>Education:</label><br>
+            <div class="ip">
+                <input name="education" type="radio" value="Graduate" id="grad" oninput="this.className = ''"><label
+                    for="y2">Graduate</label>
+                <input name="education" type="radio" value="Not Graduate" id="notgrad"
+                    oninput="this.className = ''"><label for="n2">Not Graduate</label>
+            </div>
+            <br><label>Self-Employed:</label><br>
+            <div class="ip">
+                <input name="self_emp" type="radio" value="Yes" id="y2" oninput="this.className = ''"><label
+                    for="y2">Yes</label>
+                <input name="self_emp" type="radio" value="No" id="n2" oninput="this.className = ''"><label
+                    for="n2">No</label>
+            </div>
+        </div>
+
+        <div class="tab">
+            <h3>Income Information</h3>
+            <label>Applicant Monthly Income (in Rs.):</label><br>
+            <input class="input2" name="applicant_income" type="number" required="" oninput="this.className = ''">
+            <br><br><label>Co-Applicant Monthly Income (in Rs.):</label><br>
+            <input name="co_income" type="number" required="" oninput="this.className = ''">
+        </div>
+
+        <div class="tab">
+            <h3>Loan Information</h3>
+            <label>Loan Amount in Rupees (in Rs.):</label><br>
+            <input name="loan_amount" type="number" required="" oninput="this.className = ''">
+            <br><br><label>Loan Term (in months):</label><br>
+            <input name="loan_term" type="number" min="12" max="360" required="" onblur="enforceMinMax(this)">
+        </div>
+
+        <div class="tab">
+            <h3>Credit History & Assets Information</h3>
+            <label>Credit Score above threshold:</label><br>
+            <div class="ip">
+                <input name="credit_history" type="radio" value="Yes" id="yc1" oninput="this.className = ''"><label
+                    for="y1">Yes</label>
+                <input name="credit_history" type="radio" value="No" id="nc1" oninput="this.className = ''"><label
+                    for="n1">No</label>
+            </div>
+            <br><label>Property Area:</label><br>
+            <div class="ip">
+                <input name="property_area" type="radio" value="Urban" id="ur" oninput="this.className = ''"><label
+                    for="ur">Urban</label>
+                <input name="property_area" type="radio" value="Semi-Urban" id="su" oninput="this.className = ''"><label
+                    for="su">Semi-Urban</label>
+                <input name="property_area" type="radio" value="Rural" id="ru" oninput="this.className = ''"><label
+                    for="ru">Rural</label>
+                <input name="property_area" type="radio" value="None" id="no" oninput="this.className = ''"><label
+                    for="no">No Property</label>
+            </div>
+        </div>
+
+        <br>
+        <div style="float:right;">
+            <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+            <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+        </div>
+        <br>
+
+        <div style="text-align:center;margin-top:40px;">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
+
     </form>
+    <script>
+        var currentTab = 0;
+        showTab(currentTab);
+
+        function showTab(n) {
+            var x = document.getElementsByClassName("tab");
+            x[n].style.display = "block";
+            if (n == 0) {
+                document.getElementById("prevBtn").style.display = "none";
+            } else {
+                document.getElementById("prevBtn").style.display = "inline";
+            }
+            if (n == (x.length - 1)) {
+                document.getElementById("nextBtn").innerHTML = "Submit";
+            } else {
+                document.getElementById("nextBtn").innerHTML = "Next";
+            }
+            fixStepIndicator(n)
+        }
+        function enforceMinMax(el) {
+            if (el.value != "") {
+                if (parseInt(el.value) < parseInt(el.min)) {
+                    el.value = el.min;
+                }
+                if (parseInt(el.value) > parseInt(el.max)) {
+                    el.value = el.max;
+                }
+            }
+        }
+
+        function nextPrev(n) {
+            var x = document.getElementsByClassName("tab");
+            if (n == 1 && !validateForm()) return false;
+            x[currentTab].style.display = "none";
+            currentTab = currentTab + n;
+            if (currentTab >= x.length) {
+                document.getElementById("loanappform").submit();
+                return false;
+            }
+            showTab(currentTab);
+        }
+
+        function validateForm() {
+            var x, y, i, valid = true;
+            x = document.getElementsByClassName("tab");
+            y = x[currentTab].getElementsByTagName("input");
+            for (i = 0; i < y.length; i++) {
+                if (y[i].value == "") {
+                    y[i].className += " invalid";
+                    valid = false;
+                }
+            }
+
+            if (valid) {
+                document.getElementsByClassName("step")[currentTab].className += " finish";
+            }
+            return valid;
+        }
+
+        function fixStepIndicator(n) {
+            var i, x = document.getElementsByClassName("step");
+            for (i = 0; i < x.length; i++) {
+                x[i].className = x[i].className.replace(" active", "");
+            }
+            x[n].className += " active";
+        }
+    </script>
 </body>
-<footer>
-    Smart Lender Application
-    Designed by Anirudh T E, Pranav Raj SB, Tushar Shah, Yashwanth M
-</footer>
+
 </html>

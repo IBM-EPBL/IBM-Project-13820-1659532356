@@ -2,6 +2,7 @@ from flask import render_template, Flask, request
 import numpy as np
 import pandas as pd
 import pickle
+import requests
 import os
 
 app = Flask(__name__, template_folder='templates')
@@ -77,9 +78,19 @@ def predict():
     features = [Gender, Married, Dependents, Education, Self_Employed, ApplicantIncome,
                 CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History, Property_Area]
 
-    con_features = pd.DataFrame([features], columns=headers)
-    prediction = model.predict(con_features)
+    API_KEY = "iyf1_HmB2bORijpoH0dAVju3kmTZGCiq9l3S4AOHZDpv"
+    url = 'https://iam.cloud.ibm.com/identity/token'
+    data = {"apikey": API_KEY, "grant_type": 'urn:ibm:params:oauth:grant-type:apikey'}
+    token_response = requests.post(url, data=data)
+    mltoken = token_response.json()["access_token"]
+    header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + mltoken}
 
+    data = {"input_data": [{"fields": [headers], "values": [features]}]}
+    url = 'https://us-south.ml.cloud.ibm.com/ml/v4/deployments/10c5e1b3-cbb6-42f4-8faa-7c183ba289ed/predictions?version=2022-11-17'
+    headers = {'Authorization': 'Bearer ' + mltoken}
+    response = requests.post(url, json=data, headers=header).json()
+    prediction = response['predictions'][0]['values'][0][0]
+    
     if prediction == 1 and flag==1: 
         return render_template('submit.html', result='Congrats '+Applicant_Name+'! You are eligible for the loan!')
     else:

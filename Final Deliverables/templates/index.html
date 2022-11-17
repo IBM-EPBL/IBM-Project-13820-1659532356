@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <style>
         body {
-            background-color: lightblue;
+            background-color: #055C9D;
             font-family: 'Times New Roman';
             text-align: center;
-            margin-top: 100px;
+            margin-top: 50px;
             font-size: 20px;
+            color: white;
         }
+
         button {
-            width: 80px;
+            margin: 30px;
+            width: 100px;
             background-color: lightcyan;
         }
-        img {
+
+        img.bg {
             border-style: solid;
             border-width: 2px;
+            margin: 10px;
         }
+
         footer {
-            color: navy;
-            margin-top: 40px;
+            color: white;
             text-align: center;
         }
     </style>
@@ -28,16 +34,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Predictor</title>
 </head>
+
 <body>
+    <img id="logo" src="static/ssnlogo.png" height="60px" width="150px">
     <main>
-        <img src="static/background.jpg" alt="" width="500" height="300" align="center">
-        <img src="static/home.jpg" alt="" width="500" height="300" align="center">
-        <h1>Loan Predictor</h1>
-        <h4>Click below button and fill the details to know your Loan Eligibility.</h4>
+        <h1>Smart Lender</h1>
+        <img src="static/background.jpg" class="bg" alt="" width="500" height="300" align="center">
+        <img src="static/home.jpg" class="bg" alt="" width="500" height="300" align="center">
         <div class="container">
             <a href="predict.html">
                 <button class="btn" data-hover="Loan Predictor">
-                    <div>Click to Check</div>
+                    <div>Click here to proceed</div>
                 </button>
             </a>
         </div>
@@ -47,4 +54,5 @@
         Designed by Anirudh T E, Pranav Raj SB, Tushar Shah, Yashwanth M
     </footer>
 </body>
+
 </html>
